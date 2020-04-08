@@ -1,178 +1,193 @@
 {
-    "vType": "array",
-    "elem": {
-        "vType": "object",
-        "comments": {
-            "vType": "int",
-            "required": 1
-        },
-        "published": {
-            "vType": "int",
-            "required": 1
-        },
-        "user": {
-            "vType": "object",
-            "required": 1,
-            "id": {
-                "vType": "id_string",
-                "required": 1
-            },
-            "full_name": {
-                "vType": "text",
-                "required": 1
-            },
-            "profile_picture": {
-                "vType": "url",
-                "required": 1
-            },
-            "username": {
-                "vType": "url",
-                "required": 1
-            },
-            "followed_by": {
-                "vType": "int",
-                "required": 1
-            }
-        },
-        "users_in_photo": {
-            "vType": "array",
-            "elem": {
-                "vType": "object",
-                "user": {
-                    "vType": "object",
-                    "required": 1,
-                    "id": {
-                        "vType": "id_string",
-                        "required": 1
-                    },
-                    "full_name": {
-                        "vType": "text",
-                        "required": 1
-                    },
-                    "profile_picture": {
-                        "vType": "url",
-                        "required": 1
-                    },
-                    "username": {
-                        "vType": "url",
-                        "required": 1
-                    }
-                },
-                "position": {
-                    "vType": "object",
-                    "required": 1,
-                    "x": {
-                        "vType": "double",
-                        "required": 1
-                    },
-                    "y": {
-                        "vType": "double",
-                        "required": 1
-                    }
-                }
-            }
-        },
-        "caption": {
-            "vType": "object",
-            "required": 0,
-            "text": {
-                "vType": "text",
-                "required": 1
-            },
-            "entities": {
-                "vType": "array",
-                "required": 0,
-                "elem": {
-                    "vType": "object",
-                    "type": {
-                        "vType": "text",
-                        "required": 1
-                    },
-                    "value": {
-                        "vType": "url",
-                        "required": 1
-                    },
-                    "start": {
-                        "vType": "int",
-                        "required": 1
-                    },
-                    "end": {
-                        "vType": "int",
-                        "required": 1
-                    }
-                }
-            },
-            "from": {
-                "vType": "object",
-                "required": 0,
-                "id": {
-                    "vType": "id_string",
-                    "required": 1
-                },
-                "full_name": {
-                    "vType": "text",
-                    "required": 1
-                },
-                "profile_picture": {
-                    "vType": "url",
-                    "required": 1
-                },
-                "username": {
-                    "vType": "url",
-                    "required": 1
-                }
-            }
-        },
-        "type": {
-            "vType": "text",
-            "required": 1
-        },
-        "id": {
-            "vType": "id_string",
-            "required": 1
-        },
-        "media": {
-            "vType": "array",
-            "required": 1,
-            "elem": {
-                "vType": "object",
-                "type": {
-                    "vType": "text",
-                    "required": 1
-                },
-                "url": {
-                    "vType": "url",
-                    "required": 1
-                }
-            }
-        },
-        "likes": {
-            "vType": "int",
-            "required": 1
-        },
-        "durationSeconds": {
-            "vType": "int",
-            "required": 0
-        },
-        "location": {
-            "vType": "object",
-            "required": 0,
-            "latitude": {
-                "vType": "double",
-                "required": 0
-            },
-            "id": {
-                "vType": "int",
-                "required": 0
-            },
-            "longitude": {
-                "vType": "double",
-                "required": 0
-            },
-            "name": {
-                "vType": "text",
-                "required": 0
-            }
-        }
-    }
+  "$id": "https:\/\/raw.githubusercontent.com\/Valota\/data-syntax-instagram\/v2.0.0\/instagram.json",
+  "$schema": "http:\/\/json-schema.org\/draft-07\/schema#",
+  "description": "Instagram data syntax for Valotalive",
+  "type": "array",
+  "items": {
+	"type": "object",
+	"properties": {
+	  "comments": {
+		"type": "integer"
+	  },
+	  "published": {
+		"type": "integer"
+	  },
+	  "user": {
+		"type": "object",
+		"properties": {
+		  "id": {
+			"type": "string"
+		  },
+		  "full_name": {
+			"type": "string"
+		  },
+		  "profile_picture": {
+			"type": "string",
+			"format": "uri"
+		  },
+		  "username": {
+			"type": "string",
+			"format": "uri"
+		  },
+		  "followed_by": {
+			"type": "integer"
+		  }
+		}
+	  },
+	  "users_in_photo": {
+		"type": "array",
+		"items": {
+		  "type": "object",
+		  "properties": {
+			"user": {
+			  "type": "object",
+			  "properties": {
+				"id": {
+				  "type": "string"
+				},
+				"full_name": {
+				  "type": "string"
+				},
+				"profile_picture": {
+				  "type": "string",
+				  "format": "uri"
+				},
+				"username": {
+				  "type": "string",
+				  "format": "uri"
+				}
+			  }
+			},
+			"position": {
+			  "type": "object",
+			  "properties": {
+				"x": {
+				  "type": "number"
+				},
+				"y": {
+				  "type": "number"
+				}
+			  }
+			}
+		  },
+		  "required": [
+			"user",
+			"position"
+		  ]
+		}
+	  },
+	  "caption": {
+		"type": "object",
+		"properties": {
+		  "text": {
+			"type": "string"
+		  },
+		  "entities": {
+			"type": "array",
+			"items": {
+			  "type": "object",
+			  "properties": {
+				"type": {
+				  "type": "string"
+				},
+				"value": {
+				  "type": "string",
+				  "format": "uri"
+				},
+				"start": {
+				  "type": "integer"
+				},
+				"end": {
+				  "type": "integer"
+				}
+			  },
+			  "required": [
+				"type",
+				"value",
+				"start",
+				"end"
+			  ]
+			}
+		  },
+		  "from": {
+			"type": "object",
+			"properties": {
+			  "id": {
+				"type": "string"
+			  },
+			  "full_name": {
+				"type": "string"
+			  },
+			  "profile_picture": {
+				"type": "string",
+				"format": "uri"
+			  },
+			  "username": {
+				"type": "string",
+				"format": "uri"
+			  }
+			}
+		  }
+		}
+	  },
+	  "type": {
+		"type": "string"
+	  },
+	  "id": {
+		"type": "string"
+	  },
+	  "media": {
+		"type": "array",
+		"items": {
+		  "type": "object",
+		  "properties": {
+			"type": {
+			  "type": "string"
+			},
+			"url": {
+			  "type": "string",
+			  "format": "uri"
+			}
+		  },
+		  "required": [
+			"type",
+			"url"
+		  ]
+		}
+	  },
+	  "likes": {
+		"type": "integer"
+	  },
+	  "durationSeconds": {
+		"type": "integer"
+	  },
+	  "location": {
+		"type": "object",
+		"properties": {
+		  "latitude": {
+			"type": "number"
+		  },
+		  "id": {
+			"type": "integer"
+		  },
+		  "longitude": {
+			"type": "number"
+		  },
+		  "name": {
+			"type": "string"
+		  }
+		}
+	  }
+	},
+	"required": [
+	  "comments",
+	  "published",
+	  "user",
+	  "caption",
+	  "type",
+	  "id",
+	  "media",
+	  "likes"
+	]
+  }
 }
